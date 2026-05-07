@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Mobile-AI Guide",
   },
   verification: {
-    google: "bOS4yTkqbEVKPipxpKbf2w3O0RUrm34HrDajpSGKkIo",
+    google: ["bOS4yTkqbEVKPipxpKbf2w3O0RUrm34HrDajpSGKkIo", "rtIiEwmEmo5n0b-a5yIRtzb-akhICrhPtec8Gu50rAU"],
   },
   twitter: {
     card: "summary_large_image",
