@@ -8,14 +8,28 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Mobile-AI Guide — Find Your Perfect Phone in 60 Seconds",
+  title: "Mobile-AI Guide 2026 — Best Smartphone Recommendations in India",
   description:
-    "AI-powered mobile phone recommendation engine. Tell us your budget & needs, get the top 3 phones with real price comparisons across Amazon, Flipkart, and offline stores.",
-  keywords: "mobile phone recommendation, best phone under budget, AI phone guide, smartphone comparison India",
+    "Free AI-powered mobile phone advisor for May 2026. Find the best gaming, camera, and budget phones under ₹10k, ₹20k, ₹30k, and ₹50k with real-time Amazon, Flipkart & Offline prices.",
+  keywords: "best phones 2026 India, mobile AI guide, smartphone recommendation engine, best gaming phones under 30000, latest mobile prices May 2026, iPhone 17 price India, Samsung S26 price",
+  authors: [{ name: "Mobile-AI Guide Team" }],
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
   openGraph: {
-    title: "Mobile-AI Guide — Find Your Perfect Phone",
-    description: "AI-powered smartphone recommendations tailored to your budget and needs.",
+    title: "Mobile-AI Guide — Absolute Latest Phones (May 2026)",
+    description: "Get personalized smartphone picks in 60 seconds. Powered by AI with live market price tracking.",
     type: "website",
+    locale: "en_IN",
+    url: "https://mobileguide-ai.vercel.app", // User can change this to their real domain later
+    siteName: "Mobile-AI Guide",
+  },
+  verification: {
+    google: "bOS4yTkqbEVKPipxpKbf2w3O0RUrm34HrDajpSGKkIo",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Phones in India 2026 — Mobile-AI Guide",
+    description: "Don't buy a phone until you ask our AI. Real prices from Amazon, Flipkart & Offline markets.",
   },
 };
 

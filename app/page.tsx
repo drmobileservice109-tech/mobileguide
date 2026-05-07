@@ -4,8 +4,27 @@ import Testimonials from '@/components/sections/Testimonials';
 import Link from 'next/link';
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mobile-AI Guide",
+    "url": "https://mobileguide-ai.vercel.app",
+    "description": "AI-powered mobile phone recommendation engine for the Indian market.",
+    "applicationCategory": "ShoppingApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HeroSection />
       <HowItWorks />
       <Testimonials />
