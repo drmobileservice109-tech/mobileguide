@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mobileguide-ai.vercel.app';
+  const baseUrl = 'https://mobile-aiguide.mobimanager.shop';
   
   return [
     {
