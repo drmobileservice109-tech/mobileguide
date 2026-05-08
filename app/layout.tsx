@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -12,6 +13,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+// ... existing metadata ...
   title: "Mobile-AI Guide 2026 — India's Best Smartphone AI Advisor",
   description:
     "Find your perfect smartphone in 60 seconds. Our AI analyzes real-time prices from Amazon, Flipkart & Offline stores to recommend the best mobile for your budget.",
@@ -60,6 +62,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
