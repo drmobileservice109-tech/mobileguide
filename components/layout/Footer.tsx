@@ -40,18 +40,27 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm">Popular Searches</h4>
             <ul className="space-y-2">
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best phone under ₹15k</Link></li>
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best camera phone</Link></li>
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Gaming phone 2024</Link></li>
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best 5G phone</Link></li>
+              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best phone under ₹15k (2026)</Link></li>
+              <li><Link href="/find-phone?priority=camera" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best camera phone 2026</Link></li>
+              <li><Link href="/find-phone?priority=gaming" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Gaming phone under ₹30k</Link></li>
+              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Latest iPhone 17 price</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-[rgba(108,71,255,0.1)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[#8B8BA7] text-sm">
-            © 2024 Mobile-AI Guide. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-2">
+            <p className="text-[#8B8BA7] text-sm">
+              © 2026 Mobile-AI Guide. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-emerald-500 font-bold">Live Market Status: Updated 2 mins ago</span>
+            </div>
+          </div>
           <p className="text-[#8B8BA7] text-sm flex items-center gap-1">
             Made with <Heart className="w-4 h-4 text-[#FF6B35]" /> for Indian smartphone buyers
           </p>

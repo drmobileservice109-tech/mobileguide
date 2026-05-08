@@ -12,22 +12,31 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Mobile-AI Guide 2026 — Best Smartphone Recommendations in India",
+  title: "Mobile-AI Guide 2026 — India's Best Smartphone AI Advisor",
   description:
-    "Free AI-powered mobile phone advisor for May 2026. Find the best gaming, camera, and budget phones under ₹10k, ₹20k, ₹30k, and ₹50k with real-time Amazon, Flipkart & Offline prices.",
+    "Find your perfect smartphone in 60 seconds. Our AI analyzes real-time prices from Amazon, Flipkart & Offline stores to recommend the best mobile for your budget.",
   keywords: "best phones 2026 India, mobile AI guide, smartphone recommendation engine, best gaming phones under 30000, latest mobile prices May 2026, iPhone 17 price India, Samsung S26 price",
   authors: [{ name: "Mobile-AI Guide Team" }],
+  manifest: "/manifest.json",
   robots: "index, follow",
   alternates: {
     canonical: "https://mobile-aiguide.mobimanager.shop",
   },
   openGraph: {
-    title: "Mobile-AI Guide — Absolute Latest Phones (May 2026)",
-    description: "Get personalized smartphone picks in 60 seconds. Powered by AI with live market price tracking.",
+    title: "Mobile-AI Guide — Get Your Perfect Phone Recommendation",
+    description: "Personalized smartphone picks in 60 seconds. Powered by Gemini AI with live market price tracking.",
     type: "website",
     locale: "en_IN",
     url: "https://mobile-aiguide.mobimanager.shop",
     siteName: "Mobile-AI Guide",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mobile-AI Guide 2026",
+      },
+    ],
   },
   verification: {
     google: ["bOS4yTkqbEVKPipxpKbf2w3O0RUrm34HrDajpSGKkIo", "rtIiEwmEmo5n0b-a5yIRtzb-akhICrhPtec8Gu50rAU"],
@@ -36,6 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Best Phones in India 2026 — Mobile-AI Guide",
     description: "Don't buy a phone until you ask our AI. Real prices from Amazon, Flipkart & Offline markets.",
+    images: ["/og-image.png"],
   },
 };
 

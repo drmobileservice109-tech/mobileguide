@@ -1,23 +1,49 @@
 import HeroSection from '@/components/sections/HeroSection';
 import HowItWorks from '@/components/sections/HowItWorks';
 import Testimonials from '@/components/sections/Testimonials';
+import PopularCategories from '@/components/sections/PopularCategories';
+import FAQ from '@/components/sections/FAQ';
 import Link from 'next/link';
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Mobile-AI Guide",
-    "url": "https://mobileguide-ai.vercel.app",
-    "description": "AI-powered mobile phone recommendation engine for the Indian market.",
-    "applicationCategory": "ShoppingApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Mobile-AI Guide",
+      "url": "https://mobile-aiguide.mobimanager.shop",
+      "description": "AI-powered mobile phone recommendation engine for the Indian market.",
+      "applicationCategory": "ShoppingApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the AI recommend phones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our engine uses the Gemini 1.5 Pro API to analyze real-time market data, technical specifications, and thousands of user reviews to match your budget and usage patterns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the prices accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we track prices from major retailers like Amazon, Flipkart, and offline stores daily to ensure you get the most accurate information."
+          }
+        }
+      ]
     }
-  };
+  ];
 
   return (
     <>
@@ -26,8 +52,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
+      <PopularCategories />
       <HowItWorks />
       <Testimonials />
+      <FAQ />
 
       {/* Final CTA */}
       <section className="py-24 relative overflow-hidden">
