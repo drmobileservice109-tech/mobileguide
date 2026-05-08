@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://mobileguide-ai.vercel.app/sitemap.xml
+Sitemap: https://mobile-aiguide.mobimanager.shop/sitemap.xml

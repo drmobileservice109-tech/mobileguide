@@ -6,6 +6,10 @@ import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Mobile-AI Guide 2026 — Best Smartphone Recommendations in India",
@@ -13,14 +17,16 @@ export const metadata: Metadata = {
     "Free AI-powered mobile phone advisor for May 2026. Find the best gaming, camera, and budget phones under ₹10k, ₹20k, ₹30k, and ₹50k with real-time Amazon, Flipkart & Offline prices.",
   keywords: "best phones 2026 India, mobile AI guide, smartphone recommendation engine, best gaming phones under 30000, latest mobile prices May 2026, iPhone 17 price India, Samsung S26 price",
   authors: [{ name: "Mobile-AI Guide Team" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
+  alternates: {
+    canonical: "https://mobile-aiguide.mobimanager.shop",
+  },
   openGraph: {
     title: "Mobile-AI Guide — Absolute Latest Phones (May 2026)",
     description: "Get personalized smartphone picks in 60 seconds. Powered by AI with live market price tracking.",
     type: "website",
     locale: "en_IN",
-    url: "https://mobileguide-ai.vercel.app", // User can change this to their real domain later
+    url: "https://mobile-aiguide.mobimanager.shop",
     siteName: "Mobile-AI Guide",
   },
   verification: {
