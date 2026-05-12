@@ -19,7 +19,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Note: scroll-behavior smooth is handled per-element to avoid Next.js router conflicts */
+  scroll-padding-top: 80px; /* Account for fixed navbar */
 }
 
 body {
@@ -27,6 +28,25 @@ body {
   font-family: var(--font-inter);
   color: white;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth anchor scrolling — only for hash links */
+[href^="#"] {
+  scroll-behavior: smooth;
+}
+
+/* Heading balance for better line wraps */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Keyboard focus rings */
+*:focus-visible {
+  outline: 2px solid #6C47FF;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 /* Glowing gradient text */
@@ -195,4 +215,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .btn-secondary:hover {
   background: rgba(108, 71, 255, 0.1);
   transform: translateY(-2px);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

@@ -156,31 +156,39 @@ export default function FindPhonePage() {
 
         {/* Progress Header */}
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-3">
-            <span className="font-outfit font-bold text-lg text-white">
-              Step {step + 1} of {STEPS.length}
-            </span>
-            <span className="text-[#8B8BA7] text-sm font-medium">{STEPS[step]}</span>
-          </div>
-
-          {/* Progress bar */}
-          <div className="h-2 bg-[#1A1A2E] rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-[#6C47FF] to-[#FF6B35] rounded-full"
-              animate={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
-              transition={{ duration: 0.4 }}
-            />
-          </div>
-
-          {/* Step dots */}
-          <div className="flex justify-between mt-2">
+          <div className="flex items-center justify-between mb-5">
             {STEPS.map((s, i) => (
-              <span
-                key={i}
-                className={`text-xs font-medium transition-colors ${i <= step ? 'text-[#6C47FF]' : 'text-[#3a3a5e]'}`}
-              >
-                {s}
-              </span>
+              <div key={i} className="flex items-center flex-1">
+                <div className="flex flex-col items-center">
+                  <motion.div
+                    animate={{
+                      background: i < step ? '#6C47FF' : i === step ? 'linear-gradient(135deg,#6C47FF,#FF6B35)' : '#1A1A2E',
+                      borderColor: i <= step ? '#6C47FF' : '#2a2a4e',
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="w-9 h-9 rounded-full border-2 flex items-center justify-center font-bold text-sm mb-1"
+                    style={{
+                      background: i < step ? '#6C47FF' : i === step ? 'linear-gradient(135deg,#6C47FF,#FF6B35)' : '#1A1A2E',
+                      borderColor: i <= step ? '#6C47FF' : '#2a2a4e',
+                      color: i <= step ? 'white' : '#3a3a5e',
+                    }}
+                  >
+                    {i < step ? '✓' : i + 1}
+                  </motion.div>
+                  <span className={`text-[10px] font-semibold transition-colors ${i <= step ? 'text-[#6C47FF]' : 'text-[#3a3a5e]'}`}>
+                    {s}
+                  </span>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div className="flex-1 h-0.5 mx-2 mb-4 rounded-full overflow-hidden bg-[#1A1A2E]">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-[#6C47FF] to-[#FF6B35]"
+                      animate={{ width: i < step ? '100%' : '0%' }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -366,9 +374,8 @@ export default function FindPhonePage() {
                     >
                       <motion.div
                         className="absolute top-1 w-5 h-5 bg-white rounded-full shadow"
-                        animate={{ left: needs5G ? '2px' : '30px' }}
+                        animate={{ left: needs5G ? 30 : 2 }}
                         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                        style={{ left: needs5G ? 30 : 2 }}
                       />
                     </button>
                   </div>
@@ -479,13 +486,13 @@ export default function FindPhonePage() {
               onClick={() => go(-1)}
               disabled={step === 0}
               id="btn-prev"
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all ${
                 step === 0
-                  ? 'text-[#3a3a5e] cursor-not-allowed'
-                  : 'text-[#8B8BA7] hover:text-white hover:bg-[#1A1A2E]'
+                  ? 'text-white/10 cursor-not-allowed'
+                  : 'text-[#8B8BA7] hover:text-white hover:bg-white/5'
               }`}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
               Back
             </button>
 
@@ -494,59 +501,59 @@ export default function FindPhonePage() {
                 onClick={() => go(1)}
                 disabled={!canNext()}
                 id="btn-next"
-                className={`btn-primary flex items-center gap-2 ${!canNext() ? 'opacity-40 cursor-not-allowed' : ''}`}
+                className={`btn-primary flex items-center gap-2 px-8 py-3 text-sm ${!canNext() ? 'opacity-30 grayscale cursor-not-allowed' : 'shadow-[0_4px_20px_rgba(108,71,255,0.3)]'}`}
               >
-                Next
-                <ChevronRight className="w-5 h-5" />
+                Continue
+                <ChevronRight className="w-4 h-4" />
               </button>
             ) : (
               <button
                 onClick={handleSubmit}
                 disabled={loading}
                 id="btn-find-phone"
-                className="btn-primary flex items-center gap-2 px-8 py-3"
+                className="btn-primary flex items-center gap-3 px-10 py-3 text-sm shadow-[0_4px_20px_rgba(108,71,255,0.3)]"
               >
                 {loading ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    AI is thinking...
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Analyzing...
                   </>
                 ) : (
                   <>
-                    <Zap className="w-5 h-5" />
-                    Find My Phone!
+                    <Zap className="w-4 h-4 fill-current" />
+                    Get My Recommendation
                   </>
                 )}
               </button>
             )}
           </div>
         </div>
-
-        {/* Loading overlay */}
-        {loading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-[#0A0A1A]/80 backdrop-blur-sm flex flex-col items-center justify-center z-50"
-          >
-            <div className="glass-card p-10 text-center max-w-sm border-[#6C47FF]/30">
-              <div className="w-16 h-16 border-4 border-[#6C47FF]/30 border-t-[#6C47FF] rounded-full animate-spin mx-auto mb-6" />
-              <h3 className="font-outfit font-bold text-xl text-white mb-2">{loadingMsg}</h3>
-              <p className="text-[#8B8BA7] text-sm">Please wait while we scan 50,000+ phones to find your absolute best match for May 2026...</p>
-              <div className="mt-4 flex justify-center gap-1">
-                {[0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="w-2 h-2 bg-[#6C47FF] rounded-full"
-                    animate={{ y: [-4, 0, -4] }}
-                    transition={{ duration: 0.6, delay: i * 0.2, repeat: Infinity }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
       </div>
+
+      {/* Loading overlay — rendered outside the card as a portal-like fixed overlay */}
+      {loading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-[#0A0A1A]/80 backdrop-blur-sm flex flex-col items-center justify-center z-50"
+        >
+          <div className="glass-card p-10 text-center max-w-sm border-[#6C47FF]/30">
+            <div className="w-16 h-16 border-4 border-[#6C47FF]/30 border-t-[#6C47FF] rounded-full animate-spin mx-auto mb-6" />
+            <h3 className="font-outfit font-bold text-xl text-white mb-2">{loadingMsg}</h3>
+            <p className="text-[#8B8BA7] text-sm">Please wait while we scan 50,000+ phones to find your absolute best match for May 2026...</p>
+            <div className="mt-4 flex justify-center gap-1">
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-2 h-2 bg-[#6C47FF] rounded-full"
+                  animate={{ y: [-4, 0, -4] }}
+                  transition={{ duration: 0.6, delay: i * 0.2, repeat: Infinity }}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }

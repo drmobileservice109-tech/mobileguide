@@ -13,8 +13,8 @@ export default function Footer() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C47FF] to-[#FF6B35] flex items-center justify-center">
                 <Smartphone className="w-5 h-5 text-white" />
               </div>
-              <span className="font-outfit font-bold text-lg gradient-text-purple">Mobile-AI</span>
-              <span className="font-outfit font-bold text-lg text-white">Guide</span>
+              <span className="font-outfit font-bold text-lg gradient-text-purple">Phone</span>
+              <span className="font-outfit font-bold text-lg text-white">AI</span>
             </Link>
             <p className="text-[#8B8BA7] text-sm max-w-xs leading-relaxed">
               AI-powered mobile recommendation engine that finds your perfect phone based on budget and needs — in under 60 seconds.
@@ -28,42 +28,50 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm">Quick Links</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">Product</h4>
             <ul className="space-y-2">
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm" id="footer-find-phone">Find My Phone</Link></li>
-              <li><Link href="/#how-it-works" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">How It Works</Link></li>
-              <li><Link href="/#testimonials" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Reviews</Link></li>
+              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm" id="footer-find-phone">AI Recommendation</Link></li>
+              <li><Link href="/#how-it-works" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Sale Predictor</Link></li>
+              <li><Link href="/#testimonials" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">User Reviews</Link></li>
+              <li><Link href="/#faq" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Help Center</Link></li>
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Legal */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm">Popular Searches</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">Legal</h4>
             <ul className="space-y-2">
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best phone under ₹15k (2026)</Link></li>
-              <li><Link href="/find-phone?priority=camera" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Best camera phone 2026</Link></li>
-              <li><Link href="/find-phone?priority=gaming" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Gaming phone under ₹30k</Link></li>
-              <li><Link href="/find-phone" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Latest iPhone 17 price</Link></li>
+              <li><Link href="/privacy" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Terms of Service</Link></li>
+              <li><Link href="/cookies" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Cookie Policy</Link></li>
+              <li><Link href="/disclaimer" className="text-[#8B8BA7] hover:text-white transition-colors text-sm">Price Disclaimer</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-[rgba(108,71,255,0.1)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col gap-2">
+        <div className="border-t border-[rgba(108,71,255,0.1)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col gap-3">
             <p className="text-[#8B8BA7] text-sm">
-              © 2026 Mobile-AI Guide. All rights reserved.
+              © 2026 PhoneAI. All rights reserved. Built for India.
             </p>
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-emerald-500 font-bold">Live Market Status: Updated 2 mins ago</span>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-emerald-500 font-bold">Market Status: Live</span>
+              </div>
+              <span className="text-[#3a3a5e] text-xs">Updated: {new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>
             </div>
           </div>
-          <p className="text-[#8B8BA7] text-sm flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-[#FF6B35]" /> for Indian smartphone buyers
-          </p>
+          <div className="flex items-center gap-4 text-[#8B8BA7] text-sm">
+            <span>Powered by</span>
+            <div className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+              <div className="w-4 h-4 bg-gradient-to-br from-blue-400 to-purple-500 rounded-sm" />
+              <span className="text-white font-medium">Gemini 2.0</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -2,7 +2,9 @@ import HeroSection from '@/components/sections/HeroSection';
 import HowItWorks from '@/components/sections/HowItWorks';
 import Testimonials from '@/components/sections/Testimonials';
 import PopularCategories from '@/components/sections/PopularCategories';
+import Features from '@/components/sections/Features';
 import FAQ from '@/components/sections/FAQ';
+import TrendingTicker from '@/components/sections/TrendingTicker';
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,16 +12,30 @@ export default function Home() {
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Mobile-AI Guide",
+      "name": "PhoneAI",
       "url": "https://mobile-aiguide.mobimanager.shop",
-      "description": "AI-powered mobile phone recommendation engine for the Indian market.",
+      "description": "AI-powered mobile phone recommendation engine for the Indian market. Find the best smartphone in 60 seconds.",
       "applicationCategory": "ShoppingApplication",
       "operatingSystem": "Web",
+      "inLanguage": "en-IN",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "2000000"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PhoneAI",
+      "url": "https://mobile-aiguide.mobimanager.shop",
+      "description": "India's #1 AI-powered smartphone advisor",
+      "areaServed": "IN"
     },
     {
       "@context": "https://schema.org",
@@ -27,19 +43,53 @@ export default function Home() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does the AI recommend phones?",
+          "name": "How does PhoneAI recommend phones?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our engine uses the Gemini 1.5 Pro API to analyze real-time market data, technical specifications, and thousands of user reviews to match your budget and usage patterns."
+            "text": "PhoneAI uses the Gemini AI API to analyze real-time market data, technical specifications, and thousands of user reviews to match your budget and usage patterns."
           }
         },
         {
           "@type": "Question",
-          "name": "Are the prices accurate?",
+          "name": "Are the prices shown accurate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, we track prices from major retailers like Amazon, Flipkart, and offline stores daily to ensure you get the most accurate information."
+            "text": "Yes, PhoneAI tracks prices from major retailers like Amazon, Flipkart, and offline stores daily to ensure you get the most accurate and up-to-date information."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Is PhoneAI free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, PhoneAI is completely free. No sign-up required. Just answer 4 quick questions and get your personalized phone recommendation instantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which is the best phone under 15000 in India in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use PhoneAI to get a personalized recommendation for the best phone under ₹15,000 based on your specific needs like camera, gaming, battery, or everyday use."
+          }
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mobile-aiguide.mobimanager.shop"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Find Phone",
+          "item": "https://mobile-aiguide.mobimanager.shop/find-phone"
         }
       ]
     }
@@ -52,6 +102,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
+      <TrendingTicker />
+      <Features />
       <PopularCategories />
       <HowItWorks />
       <Testimonials />

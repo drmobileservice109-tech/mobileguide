@@ -13,30 +13,56 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-// ... existing metadata ...
-  title: "Mobile-AI Guide 2026 — India's Best Smartphone AI Advisor",
+  metadataBase: new URL("https://mobile-aiguide.mobimanager.shop"),
+  title: {
+    default: "PhoneAI — Best Mobile Recommendation in India 2026",
+    template: "%s | PhoneAI",
+  },
   description:
-    "Find your perfect smartphone in 60 seconds. Our AI analyzes real-time prices from Amazon, Flipkart & Offline stores to recommend the best mobile for your budget.",
-  keywords: "best phones 2026 India, mobile AI guide, smartphone recommendation engine, best gaming phones under 30000, latest mobile prices May 2026, iPhone 17 price India, Samsung S26 price",
-  authors: [{ name: "Mobile-AI Guide Team" }],
+    "PhoneAI finds your perfect smartphone in 60 seconds. AI-powered recommendations with real-time prices from Amazon, Flipkart & offline stores. Best phone for any budget in India.",
+  keywords: [
+    "best phone recommendation India 2026",
+    "PhoneAI",
+    "smartphone AI advisor India",
+    "best mobile under 15000 India",
+    "best phone under 20000 2026",
+    "best gaming phone India 2026",
+    "best camera phone under 30000",
+    "iPhone 17 price India",
+    "Samsung S25 price India",
+    "AI mobile advisor",
+    "best 5G phone India",
+    "OnePlus vs Samsung 2026",
+    "Flipkart Amazon phone deals",
+  ],
+  authors: [{ name: "PhoneAI Team" }],
   manifest: "/manifest.json",
-  robots: "index, follow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   alternates: {
     canonical: "https://mobile-aiguide.mobimanager.shop",
   },
   openGraph: {
-    title: "Mobile-AI Guide — Get Your Perfect Phone Recommendation",
-    description: "Personalized smartphone picks in 60 seconds. Powered by Gemini AI with live market price tracking.",
+    title: "PhoneAI — Find Your Perfect Phone in 60 Seconds",
+    description: "India's #1 AI-powered smartphone advisor. Get personalized phone picks with live Amazon & Flipkart prices. Free, instant, unbiased.",
     type: "website",
     locale: "en_IN",
     url: "https://mobile-aiguide.mobimanager.shop",
-    siteName: "Mobile-AI Guide",
+    siteName: "PhoneAI",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Mobile-AI Guide 2026",
+        alt: "PhoneAI — AI Phone Advisor India",
       },
     ],
   },
@@ -45,10 +71,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Phones in India 2026 — Mobile-AI Guide",
-    description: "Don't buy a phone until you ask our AI. Real prices from Amazon, Flipkart & Offline markets.",
+    title: "PhoneAI — Best Phone Recommendations in India 2026",
+    description: "Don't buy a phone without asking our AI first. Real-time prices from Amazon, Flipkart & local markets. 100% free.",
     images: ["/og-image.png"],
   },
+  icons: {
+    apple: "/favicon.ico",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -63,6 +93,21 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <Analytics />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                  }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
@@ -9,7 +9,7 @@ const testimonials = [
     avatar: 'RS',
     avatarBg: 'from-[#6C47FF] to-[#8B6FFF]',
     rating: 5,
-    review: 'Was confused between OnePlus and Samsung for weeks. Mobile-AI Guide gave me the perfect answer in 45 seconds! Got the Pixel 8a — best decision ever.',
+    review: 'Was confused between OnePlus and Samsung for weeks. PhoneAI gave me the perfect answer in 45 seconds! Got the Pixel 8a — best decision ever.',
     phone: 'Bought: Google Pixel 8a',
     savings: 'Saved ₹3,400 via Flipkart offer',
   },
@@ -29,7 +29,7 @@ const testimonials = [
     avatar: 'AK',
     avatarBg: 'from-[#00D4AA] to-[#00A87A]',
     rating: 5,
-    review: 'Budget was tight at ₹15k. The AI not only recommended the best phone but also told me to wait 10 days for a sale — saved me ₹2,000 extra!',
+    review: 'Budget was tight at ₹15k. PhoneAI not only recommended the best phone but also told me to wait 10 days for a sale — saved me ₹2,000 extra!',
     phone: 'Bought: Redmi Note 13 Pro',
     savings: 'Saved ₹2,000 by waiting for sale',
   },
@@ -39,7 +39,7 @@ const testimonials = [
     avatar: 'DN',
     avatarBg: 'from-[#6C47FF] to-[#FF6B35]',
     rating: 5,
-    review: 'Bought it as a gift for my dad. The "For Senior" use-case recommendation was spot on — easy to use interface, great battery, big display. Dad loves it!',
+    review: 'Bought it as a gift for my dad. The "For Senior" use-case recommendation was spot on — easy to use, great battery, big display. Dad loves it!',
     phone: 'Bought: Moto G84 5G',
     savings: 'Best value pick in ₹20k range',
   },
@@ -67,9 +67,9 @@ const testimonials = [
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-0.5">
       {Array.from({ length: rating }).map((_, i) => (
-        <Star key={i} className="w-4 h-4 fill-[#FF6B35] text-[#FF6B35]" />
+        <Star key={i} className="w-3.5 h-3.5 fill-[#FF6B35] text-[#FF6B35]" />
       ))}
     </div>
   );
@@ -97,49 +97,76 @@ export default function Testimonials() {
             Loved by <span className="gradient-text">2 Million+</span> Users
           </h2>
           <p className="text-[#8B8BA7] text-lg max-w-xl mx-auto">
-            Real stories from people who found their perfect phone
+            Real stories from people who found their perfect phone using PhoneAI
           </p>
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card p-6 hover:scale-[1.02] transition-transform duration-300"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="relative glass-card p-6 hover:border-[#6C47FF]/40 hover:shadow-[0_0_30px_rgba(108,71,255,0.1)] transition-all duration-300 group"
               id={`testimonial-${i + 1}`}
             >
+              {/* Quote icon */}
+              <Quote className="absolute top-4 right-4 w-8 h-8 text-[#6C47FF]/10 group-hover:text-[#6C47FF]/20 transition-colors" />
+
               {/* Header */}
               <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-white font-bold text-sm shrink-0`}>
+                <div className={`w-11 h-11 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-lg`}>
                   {t.avatar}
                 </div>
-                <div>
-                  <div className="font-semibold text-white text-sm">{t.name}</div>
-                  <div className="text-[#8B8BA7] text-xs">{t.role}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-white text-sm truncate">{t.name}</div>
+                  <div className="text-[#8B8BA7] text-xs truncate">{t.role}</div>
                 </div>
-                <div className="ml-auto">
-                  <StarRating rating={t.rating} />
-                </div>
+                <StarRating rating={t.rating} />
               </div>
 
               {/* Review */}
-              <p className="text-[#8B8BA7] text-sm leading-relaxed mb-4">
+              <p className="text-[#A8A8C0] text-sm leading-relaxed mb-5">
                 &ldquo;{t.review}&rdquo;
               </p>
 
               {/* Phone + Savings */}
-              <div className="border-t border-[rgba(108,71,255,0.1)] pt-4 space-y-1">
-                <div className="text-xs text-[#6C47FF] font-medium">📱 {t.phone}</div>
-                <div className="text-xs text-[#00D4AA] font-medium">✅ {t.savings}</div>
+              <div className="border-t border-[rgba(108,71,255,0.1)] pt-4 flex flex-col gap-1.5">
+                <div className="text-xs text-[#8B6FFF] font-medium flex items-center gap-1.5">
+                  <span>📱</span>
+                  <span>{t.phone}</span>
+                </div>
+                <div className="text-xs text-[#00D4AA] font-medium flex items-center gap-1.5">
+                  <span>✅</span>
+                  <span>{t.savings}</span>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Summary stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-12 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
+        >
+          {[
+            { value: '4.9★', label: 'Average Rating' },
+            { value: '2M+', label: 'Happy Users' },
+            { value: '98%', label: 'Would Recommend' },
+          ].map((stat, i) => (
+            <div key={i} className="text-center p-4 rounded-2xl bg-[#12121E] border border-white/5">
+              <div className="font-outfit font-bold text-xl gradient-text-purple">{stat.value}</div>
+              <div className="text-[#8B8BA7] text-xs mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

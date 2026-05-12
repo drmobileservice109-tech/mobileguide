@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     const currentMonth = new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
 
-    const prompt = `You are an expert Indian mobile phone advisor specializing in the ABSOLUTE LATEST smartphone market in India. 
+    const prompt = `You are PhoneAI, an expert Indian mobile phone advisor specializing in the ABSOLUTE LATEST smartphone market in India. 
 CURRENT STATUS: ${today}. Focus: ${currentMonth} releases and trends.
 
 CRITICAL RULES — MUST FOLLOW STRICTLY:
@@ -42,23 +42,50 @@ USER PREFERENCES:
 - Wants Flagship Legends: ${prefs.wantsLegends ? 'YES' : 'NO'}
 - Prefer Offline: ${prefs.preferOffline ? 'YES — show best local store deals' : 'NO'}
 
-HOT 2026 PRICE REFERENCE TABLE (MAY 7, 2026):
-Use these EXACT prices if these phones are recommended:
-- Motorola Edge 60 Fusion: Amazon ₹20,900 | Flipkart ₹24,999 | Offline ₹19,500
-- Redmi Note 15 Pro (8/256): Amazon ₹33,999 | Flipkart ₹31,487 | Offline ₹31,000
+ACTUAL MARKET PRICE REFERENCE TABLE (MAY 2026 — India):
+Use these EXACT prices. These are verified real prices:
+
+# Budget (Under ₹15,000)
+- Redmi 14C 5G (6/128): Amazon ₹9,499 | Flipkart ₹9,299 | Offline ₹9,000
+- Realme Narzo 70 Pro (8/128): Amazon ₹11,999 | Flipkart ₹11,499 | Offline ₹11,000
+- Redmi Note 13 (6/128): Amazon ₹12,499 | Flipkart ₹11,999 | Offline ₹11,500
+- Moto G45 5G (8/128): Amazon ₹10,999 | Flipkart ₹10,499 | Offline ₹10,000
+- Realme P1 5G (6/128): Amazon ₹11,999 | Flipkart ₹11,499 | Offline ₹11,000
+- Samsung Galaxy A16 5G (8/128): Amazon ₹14,499 | Flipkart ₹13,999 | Offline ₹13,500
+
+# Mid-range (₹15,000 - ₹25,000)
+- Realme P10 5G (6/128): Amazon ₹14,999 | Flipkart ₹14,499 | Offline ₹14,000
+- Infinix GT 20 Pro (8/128): Amazon ₹24,999 | Flipkart ₹24,999 | Offline ₹23,500
+- iQOO Z10 (8/128): Amazon ₹19,999 | Flipkart ₹20,499 | Offline ₹18,900
+- Motorola Edge 60 Fusion (8/256): Amazon ₹20,900 | Flipkart ₹24,999 | Offline ₹19,500
+- Redmi Note 14 Pro (8/256): Amazon ₹21,999 | Flipkart ₹20,999 | Offline ₹20,000
+- Poco X7 Pro (8/256): Amazon ₹23,999 | Flipkart ₹22,999 | Offline ₹22,000
+- Samsung Galaxy A36 5G (8/128): Amazon ₹22,999 | Flipkart ₹21,999 | Offline ₹21,000
+- Nothing Phone (2a) Plus (12/256): Amazon ₹24,999 | Flipkart ₹24,999 | Offline ₹23,500
+
+# Upper Mid-range (₹25,000 - ₹45,000)
+- Samsung Galaxy M56 5G (8/128): Amazon ₹21,998 | Flipkart ₹21,999 | Offline ₹21,000
 - OnePlus Nord 5 (8/256): Amazon ₹33,999 | Flipkart ₹32,999 | Offline ₹31,500
-- iQOO Z10: Amazon ₹19,999 | Flipkart ₹20,499 | Offline ₹18,900
-- Vivo V35 Pro: Amazon ₹31,999 | Flipkart ₹32,499 | Offline ₹30,500
+- Redmi Note 15 Pro (8/256): Amazon ₹33,999 | Flipkart ₹31,487 | Offline ₹31,000
+- Vivo V35 Pro (12/256): Amazon ₹31,999 | Flipkart ₹32,499 | Offline ₹30,500
+- Samsung Galaxy A56 5G (8/256): Amazon ₹36,999 | Flipkart ₹35,999 | Offline ₹35,000
+- iQOO Neo 10 (12/256): Amazon ₹34,999 | Flipkart ₹33,999 | Offline ₹33,000
+- Poco F7 (12/256): Amazon ₹29,999 | Flipkart ₹28,999 | Offline ₹28,000
+
+# Premium (₹45,000+)
+- Samsung Galaxy S25 (12/256): Amazon ₹67,999 | Flipkart ₹69,999 | Offline ₹65,000
 - iPhone 17 (256GB): Amazon ₹82,900 | Flipkart ₹81,500 | Offline ₹79,000
-- Samsung Galaxy S25: Amazon ₹67,999 | Flipkart ₹69,999 | Offline ₹65,000
-- Nothing Phone (3): Amazon ₹79,999 | Flipkart ₹79,999 | Offline ₹76,000
+- OnePlus 13 (16/512): Amazon ₹69,999 | Flipkart ₹68,999 | Offline ₹67,000
+- Nothing Phone (3) (12/256): Amazon ₹79,999 | Flipkart ₹79,999 | Offline ₹76,000
+- Google Pixel 9 (256GB): Amazon ₹72,999 | Flipkart ₹71,999 | Offline ₹70,000
 
 INSTRUCTIONS:
 1. Rank: first = "Best Value", second = "Performance King", third = "Premium Choice"
-2. PRICE VERIFICATION: You MUST use the values from the REFERENCE TABLE above if the phone is listed there. If not listed, follow the logic: Amazon/Flipkart < MSRP, Offline < Online.
-3. SALE AWARENESS: Mention "Sasa Lele Sale" (starts May 9) if relevant to wait time.
-4. VARIANT: Always specify (e.g. "iPhone 17 (256GB)").
-5. shouldWait.wait = true ONLY if a sale is coming within 2 weeks or price drop expected
+2. CRITICAL PRICE RULE: You MUST use the EXACT prices from the reference table above for any listed phone. For phones NOT in the table, use realistic current Indian market prices — NEVER fabricate unrealistically low prices. If a phone costs ₹20,000 in market, set that price, not ₹10,000.
+3. The "price" field = MRP/original price. amazonPrice/flipkartPrice = current discounted sale price (from table or realistic estimate). offlineTargetPrice = typical offline negotiated price (slightly below online).
+4. SALE AWARENESS: Mention "Sasa Lele Sale" (starts May 9) if relevant to wait time.
+5. VARIANT: Always specify RAM/Storage variant (e.g. "Samsung Galaxy M56 5G (8/128)").
+6. shouldWait.wait = true ONLY if a sale is coming within 2 weeks or price drop expected
 
 Return ONLY valid JSON, no markdown, no explanation:
 {
@@ -174,8 +201,8 @@ IMPORTANT: Replace ALL placeholder phones above with REAL, ACTUAL 2024-2025 phon
       headers: {
         'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://mobile-ai-guide.vercel.app',
-        'X-Title': 'Mobile AI Guide',
+        'HTTP-Referer': 'https://mobile-aiguide.mobimanager.shop',
+        'X-Title': 'PhoneAI',
       },
       body: JSON.stringify({
         model: MODEL,

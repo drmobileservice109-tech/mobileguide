@@ -26,8 +26,8 @@ export default function Navbar() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C47FF] to-[#FF6B35] flex items-center justify-center group-hover:scale-110 transition-transform">
             <Smartphone className="w-5 h-5 text-white" />
           </div>
-          <span className="font-outfit font-bold text-lg gradient-text-purple">Mobile-AI</span>
-          <span className="font-outfit font-bold text-lg text-white">Guide</span>
+          <span className="font-outfit font-bold text-lg gradient-text-purple">Phone</span>
+          <span className="font-outfit font-bold text-lg text-white">AI</span>
         </Link>
 
         {/* Desktop links */}

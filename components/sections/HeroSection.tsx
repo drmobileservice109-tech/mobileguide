@@ -35,16 +35,41 @@ export default function HeroSection() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        {/* Floating elements */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-visible">
+          {floatingPhones.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: 0, x: p.x, opacity: 0 }}
+              animate={{ 
+                y: [0, -30, 0],
+                x: [p.x, p.x + 10, p.x],
+                opacity: 0.15 
+              }}
+              transition={{ 
+                duration: 5, 
+                delay: p.delay, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className={`absolute left-1/2 top-1/2 ${p.size} blur-[1px]`}
+              style={{ marginLeft: `${p.x * 10}px`, marginTop: `${(i - 1) * 150}px` }}
+            >
+              {p.emoji}
+            </motion.div>
+          ))}
+        </div>
+
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6C47FF]/10 border border-[#6C47FF]/30 text-sm text-[#8B6FFF] font-medium mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6C47FF]/10 border border-[#6C47FF]/30 text-sm text-[#8B6FFF] font-medium mb-8 relative z-20"
           id="hero-badge"
         >
           <Sparkles className="w-4 h-4" />
-          <span>Powered by Gemini AI · India's #1 Phone Advisor</span>
+          <span>PhoneAI · Powered by Gemini · India&apos;s #1 Phone Advisor</span>
         </motion.div>
 
         {/* Headline */}
@@ -52,17 +77,17 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-outfit text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6"
+          className="font-outfit text-5xl sm:text-7xl md:text-8xl font-black leading-[1.1] mb-8 relative z-20"
           id="hero-headline"
         >
           Find Your{' '}
-          <span className="gradient-text">Perfect Phone</span>
+          <span className="gradient-text drop-shadow-[0_0_30px_rgba(108,71,255,0.3)]">Perfect Phone</span>
           <br />
           in{' '}
           <span className="relative">
             <span className="text-[#FF6B35]">60 Seconds</span>
             <motion.div
-              className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#FF6B35] to-[#6C47FF] rounded-full"
+              className="absolute -bottom-3 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF6B35] to-[#6C47FF] rounded-full shadow-[0_0_15px_rgba(255,107,53,0.5)]"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -75,11 +100,12 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-[#8B8BA7] text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
+          className="text-[#A8A8C0] text-lg sm:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed font-medium relative z-20"
           id="hero-subheadline"
         >
-          Tell us your budget & usage — our AI analyzes thousands of phones and delivers
-          the <strong className="text-white">top 3 recommendations</strong> with real-time prices from Amazon, Flipkart & offline stores.
+          Skip the research. Tell us your needs and let our AI scan{' '}
+          <strong className="text-white">50,000+ phones</strong> to deliver your 
+          top 3 picks with real-time market prices.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -87,13 +113,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20 relative z-20"
         >
-          <Link href="/find-phone" id="hero-cta-primary" className="btn-primary text-lg px-8 py-4 flex items-center gap-2">
-            <Zap className="w-5 h-5" />
-            Find My Perfect Phone →
+          <Link href="/find-phone" id="hero-cta-primary" className="btn-primary text-xl px-10 py-5 flex items-center gap-3 shadow-[0_10px_40px_rgba(108,71,255,0.4)]">
+            <Zap className="w-6 h-6 fill-current" />
+            Find My Phone Now
           </Link>
-          <a href="#how-it-works" id="hero-cta-secondary" className="btn-secondary text-lg px-8 py-4">
+          <a href="#how-it-works" id="hero-cta-secondary" className="btn-secondary text-xl px-10 py-5 bg-white/5 backdrop-blur-sm border-white/10 hover:border-[#6C47FF]/50 transition-all">
             See How It Works
           </a>
         </motion.div>
@@ -103,16 +129,16 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-16"
+          className="flex flex-wrap items-center justify-center gap-4 mb-20 relative z-20"
         >
           {[
-            { icon: <TrendingUp className="w-4 h-4" />, label: 'Real-time Prices' },
-            { icon: <Shield className="w-4 h-4" />, label: 'Unbiased Recommendations' },
-            { icon: <Sparkles className="w-4 h-4" />, label: 'AI-Powered Analysis' },
+            { icon: <TrendingUp className="w-5 h-5" />, label: 'Real-time Prices' },
+            { icon: <Shield className="w-5 h-5" />, label: 'Unbiased Advice' },
+            { icon: <Sparkles className="w-5 h-5" />, label: 'Gemini AI Analysis' },
           ].map((pill, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12121E] border border-[rgba(108,71,255,0.2)] text-xs text-[#8B8BA7]"
+              className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#12121E]/80 backdrop-blur-sm border border-white/5 text-sm text-[#A8A8C0] font-medium hover:border-[#6C47FF]/30 transition-colors"
             >
               <span className="text-[#6C47FF]">{pill.icon}</span>
               {pill.label}
@@ -125,16 +151,16 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto relative z-20"
           id="hero-stats"
         >
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="glass-card p-4 text-center"
+              className="glass-card p-6 text-center border-white/5 hover:border-[#6C47FF]/20 transition-all duration-300"
             >
-              <div className="font-outfit font-bold text-2xl gradient-text-purple">{stat.value}</div>
-              <div className="text-[#8B8BA7] text-xs mt-1">{stat.label}</div>
+              <div className="font-outfit font-black text-3xl gradient-text-purple mb-1">{stat.value}</div>
+              <div className="text-[#8B8BA7] text-xs font-bold uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
         </motion.div>
