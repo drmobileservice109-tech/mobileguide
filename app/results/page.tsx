@@ -62,7 +62,7 @@ function ScoreBar({ label, value, color, delay }: { label: string; value: number
 
 
 function PhoneCard({ phone, index, prefs }: { phone: PhoneRecommendation; index: number; prefs: UserPreferences | null }) {
-  const cfg = RANK_CONFIG[phone.rank];
+  const cfg = RANK_CONFIG[phone.rank as keyof typeof RANK_CONFIG] || RANK_CONFIG['Best Value'];
   const lowestPrice = Math.min(phone.amazonPrice, phone.flipkartPrice, phone.offlineTargetPrice);
   const prioritizeOffline = prefs?.preferOffline && (phone.offlineTargetPrice <= lowestPrice * 1.05);
   const bestSource = prioritizeOffline ? 'Local Store' : (phone.amazonPrice === lowestPrice ? 'Amazon' : phone.flipkartPrice === lowestPrice ? 'Flipkart' : 'Offline');
@@ -102,8 +102,16 @@ function PhoneCard({ phone, index, prefs }: { phone: PhoneRecommendation; index:
         <div className="bg-[#0A0A1A]/40 rounded-2xl p-4 mb-3">
           <div className="flex items-end justify-between mb-3">
             <div>
-              <span className="font-outfit font-black text-3xl text-white">₹{displayBestPrice.toLocaleString()}</span>
-              <span className="text-[#8B8BA7] text-xs ml-2 line-through">₹{phone.price.toLocaleString()}</span>
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="font-outfit font-black text-3xl text-white">₹{displayBestPrice.toLocaleString()}</span>
+                {phone.priceStatus === 'Low' && (
+                  <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">🔥 Best Price</span>
+                )}
+                {phone.priceStatus === 'High' && (
+                  <span className="text-[10px] font-bold bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full border border-red-500/30">⚠️ Price High</span>
+                )}
+              </div>
+              <span className="text-[#8B8BA7] text-xs line-through">₹{phone.price.toLocaleString()}</span>
               <div className="flex items-center gap-1.5 mt-1">
                 <span className="text-[#FFB800] text-[10px] font-bold bg-[#FFB800]/10 px-1.5 py-0.5 rounded">AI Estimate</span>
                 <span className="text-[#8B8BA7] text-[10px]">verify before buying</span>

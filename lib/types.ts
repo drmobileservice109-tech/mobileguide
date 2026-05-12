@@ -47,6 +47,7 @@ export interface PhoneRecommendation {
   bankOffers: string[];
   shouldWait: ShouldWait;
   aiVerdict: string;
+  priceStatus: 'Low' | 'Stable' | 'High'; // Indicates if price is currently high or low
   pros: string[];
   cons: string[];
 }
